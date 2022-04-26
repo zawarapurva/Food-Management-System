@@ -5,17 +5,19 @@
  */
 package Business.Enterprise;
 
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.Enterprise;
 import Business.Role.Role;
 import java.util.ArrayList;
 
 /**
  *
- * @author Pankaj Gorav
+ * @author Team Void
  */
-public class ShelterEnterprise extends Enterprise {
+public class NGOEnterprise extends Enterprise{
     
-      public ShelterEnterprise(String name){
-        super(name,Enterprise.EnterpriseType.Shelter);
+    public NGOEnterprise(String name){
+        super(name,Enterprise.EnterpriseType.NGO);
     }
     
     @Override
