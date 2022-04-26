@@ -5,7 +5,7 @@
  */
 package UserInterface;
 
-import Business.DB4OUtil.DB4OUtil;
+import Database.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
@@ -64,6 +64,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -123,7 +124,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane.setRightComponent(userProcessContainer);
 
-        getContentPane().add(jSplitPane, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jSplitPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1612, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
