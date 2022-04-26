@@ -5,17 +5,21 @@
  */
 package Business.Enterprise;
 
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.Enterprise;
 import Business.Role.Role;
+import Business.WorkQueue.InventoryDirectory;
 import java.util.ArrayList;
 
 /**
  *
  * @author Pankaj Gorav
  */
-public class ShelterEnterprise extends Enterprise {
+public class DistributorEnterprise extends Enterprise {
     
-      public ShelterEnterprise(String name){
-        super(name,Enterprise.EnterpriseType.Shelter);
+    public DistributorEnterprise(String name){
+        super(name,Enterprise.EnterpriseType.Distributor);
+        
     }
     
     @Override
