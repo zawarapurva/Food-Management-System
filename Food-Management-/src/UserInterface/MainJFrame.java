@@ -126,7 +126,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         getContentPane().add(jSplitPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
