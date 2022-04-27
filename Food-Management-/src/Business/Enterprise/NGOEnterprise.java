@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Team Void
+ * @author Pooja
  */
 public class NGOEnterprise extends Enterprise{
     

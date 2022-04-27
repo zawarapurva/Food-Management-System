@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Pankaj Gorav
+ * @author Pooja
  */
 public class NGOWorkAreaJPanel extends javax.swing.JPanel {
 

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Pankaj Gorav
+ * @author Pooja
  */
 public class QualityCheckEnterprise extends Enterprise {
     
