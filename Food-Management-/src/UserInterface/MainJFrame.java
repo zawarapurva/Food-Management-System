@@ -124,7 +124,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane.setRightComponent(userProcessContainer);
 
-        getContentPane().add(jSplitPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jSplitPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1612, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -199,7 +199,7 @@ public class MainJFrame extends javax.swing.JFrame {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", 465);
-        props.put("mail.smtp.user", "voidxisalive@gmail.com");
+        props.put("mail.smtp.user", "aed123.fms@gmail.com");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.debug", "true");
@@ -220,11 +220,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 MimeMessage message = new MimeMessage(session);
                 message.setText("The person login is" + " " +userName);
                 message.setSubject("Login Person");
-                message.setFrom(new InternetAddress("voidxisalive@gmail.com"));
-                message.addRecipient(RecipientType.TO, new InternetAddress("voidxisalive@gmail.com"));
+                message.setFrom(new InternetAddress("aed123.fms@gmail.com"));
+                message.addRecipient(RecipientType.TO, new InternetAddress("aed123.fms@gmail.com"));
                 message.saveChanges();
                 Transport transport = session.getTransport("smtp");
-                transport.connect("smtp.gmail.com", "voidxisalive@gmail.com", "Voidx@12345");
+                transport.connect("smtp.gmail.com", "aed123.fms@gmail.com", "aed@fms123");
                 transport.sendMessage(message, message.getAllRecipients());
                 transport.close();
                 //jLabelResponse.setText("Your password mailed to you");         
