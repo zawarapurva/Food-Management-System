@@ -31,9 +31,11 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-
+<<<<<<< HEAD
+          <AbsoluteConstraints x="0" y="0" width="1612" height="590"/>
+=======
           <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
-
+>>>>>>> parent of 18c9d69 (Merge branch 'SumedhaKasarla002966691' into main)
         </Constraint>
       </Constraints>
 

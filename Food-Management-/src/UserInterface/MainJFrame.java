@@ -124,8 +124,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane.setRightComponent(userProcessContainer);
 
+<<<<<<< HEAD
+        getContentPane().add(jSplitPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1612, 590));
+=======
         getContentPane().add(jSplitPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
+>>>>>>> parent of 18c9d69 (Merge branch 'SumedhaKasarla002966691' into main)
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
