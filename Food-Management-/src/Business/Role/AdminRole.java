@@ -24,4 +24,3 @@ import javax.swing.JPanel;
         return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
     }
     
-}
