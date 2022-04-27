@@ -4,23 +4,24 @@
  */
 package Business.Role;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.DistributorOrganization;
+import Business.Organization.GroceryOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import UserInterface.DistributorWorkAreaJPanel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author kasar
  */
-
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Organization.Organization;
-import Business.UserAccount.UserAccount;
-import UserInterface.AdminWorkAreaJPanel;
-import javax.swing.JPanel;
-
-
-    public class AdminRole extends Role {
+public class GroceryRole extends Role {
     
-     @Override
+    @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
+        return new DistributorWorkAreaJPanel(userProcessContainer, account, (DistributorOrganization)organization, enterprise, business);
     }
     
+}
