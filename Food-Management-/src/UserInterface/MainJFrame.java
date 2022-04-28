@@ -64,7 +64,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -124,7 +123,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane.setRightComponent(userProcessContainer);
 
-        getContentPane().add(jSplitPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1612, 590));
+        getContentPane().add(jSplitPane, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,7 +194,6 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         
         //***************************** Starting of Email Logic
-        
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", 465);
