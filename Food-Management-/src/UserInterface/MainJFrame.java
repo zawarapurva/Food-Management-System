@@ -23,7 +23,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Team Void
+ * @author Pooja
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -64,7 +64,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -124,7 +123,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane.setRightComponent(userProcessContainer);
 
-        getContentPane().add(jSplitPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jSplitPane, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,16 +194,16 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         
         //***************************** Starting of Email Logic
-        
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", 465);
-        props.put("mail.smtp.user", "voidxisalive@gmail.com");
+        props.put("mail.smtp.user", "aed123.fms@gmail.com");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.debug", "true");
         props.put("mail.smtp.socketFactory.port", 465);
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
         props.put("mail.smtp.socketFactory.fallback", "false"); 
         try {
             //Class.forName("com.mysql.jdbc.Driver");       
@@ -220,11 +219,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 MimeMessage message = new MimeMessage(session);
                 message.setText("The person login is" + " " +userName);
                 message.setSubject("Login Person");
-                message.setFrom(new InternetAddress("voidxisalive@gmail.com"));
-                message.addRecipient(RecipientType.TO, new InternetAddress("voidxisalive@gmail.com"));
+                message.setFrom(new InternetAddress("aed123.fms@gmail.com"));
+                message.addRecipient(RecipientType.TO, new InternetAddress("aed123.fms@gmail.com"));
                 message.saveChanges();
                 Transport transport = session.getTransport("smtp");
-                transport.connect("smtp.gmail.com", "voidxisalive@gmail.com", "Voidx@12345");
+                transport.connect("smtp.gmail.com", "aed123.fms@gmail.com", "aed@fms123");
                 transport.sendMessage(message, message.getAllRecipients());
                 transport.close();
                 //jLabelResponse.setText("Your password mailed to you");         
