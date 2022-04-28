@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 
 import Business.EcoSystem;
 import Business.Organization.Organization;
-
 public class AdminRole extends Role {
     
      @Override
@@ -26,4 +25,4 @@ public class AdminRole extends Role {
         return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
     }
     
-}
+} 
