@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Team Void
+ * @author Pooja
  */
 public class ProcessQWorkRequestJPanel extends javax.swing.JPanel {
 

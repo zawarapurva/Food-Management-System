@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Pankaj Gorav
+ * @author Pooja
  */
 public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -101,9 +101,12 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
         btnSupplierFood = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 51, 51));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Comments");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 533, -1, -1));
+        add(resultJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(471, 565, 256, 4));
 
         backJButton.setBackground(new java.awt.Color(255, 255, 255));
         backJButton.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
@@ -113,6 +116,7 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(924, 22, 113, 33));
 
         submitJButton.setBackground(new java.awt.Color(255, 255, 255));
         submitJButton.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
@@ -122,10 +126,12 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
                 submitJButtonActionPerformed(evt);
             }
         });
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(876, 536, -1, 33));
 
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Process Request");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 21, -1, -1));
 
         tblProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,6 +151,8 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblProducts);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 76, 1020, 126));
+
         tblInventory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -155,19 +163,25 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblInventory);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 325, 1020, 181));
+
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Inventory Dashboard");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 279, 214, 32));
 
         lblInventoryCount.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblInventoryCount.setForeground(new java.awt.Color(255, 255, 255));
         lblInventoryCount.setText("0");
+        add(lblInventoryCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 284, 104, 26));
 
         jLabel4.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Filter");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(534, 285, -1, 26));
 
         jComboBoxProductType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(jComboBoxProductType, new org.netbeans.lib.awtextra.AbsoluteConstraints(583, 282, 102, 30));
 
         btnProductType.setBackground(new java.awt.Color(255, 255, 255));
         btnProductType.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
@@ -177,6 +191,7 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
                 btnProductTypeActionPerformed(evt);
             }
         });
+        add(btnProductType, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 284, -1, 29));
 
         btnInventoryCount.setBackground(new java.awt.Color(255, 255, 255));
         btnInventoryCount.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
@@ -186,6 +201,7 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
                 btnInventoryCountActionPerformed(evt);
             }
         });
+        add(btnInventoryCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(814, 284, -1, 28));
 
         btnSupplierFood.setBackground(new java.awt.Color(255, 255, 255));
         btnSupplierFood.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
@@ -195,76 +211,7 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
                 btnSupplierFoodActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxProductType, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnProductType)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnInventoryCount)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblInventoryCount, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1)
-                            .addComponent(jScrollPane2)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnSupplierFood)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addGap(149, 149, 149)
-                                .addComponent(submitJButton)))
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxProductType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProductType, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInventoryCount, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblInventoryCount, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSupplierFood, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(submitJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(97, Short.MAX_VALUE))
-        );
+        add(btnSupplierFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 533, -1, 37));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

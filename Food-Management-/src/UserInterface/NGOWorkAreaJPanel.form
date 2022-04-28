@@ -32,7 +32,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="refreshJButton" min="-2" pref="125" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" pref="573" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="852" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="assignJButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -71,7 +71,7 @@
                   <Component id="showProductBtn" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="btnSendtoDistributor" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace pref="367" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
