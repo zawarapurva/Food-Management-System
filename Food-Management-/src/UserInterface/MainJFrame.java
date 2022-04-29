@@ -204,6 +204,7 @@ public class MainJFrame extends javax.swing.JFrame {
         props.put("mail.smtp.debug", "true");
         props.put("mail.smtp.socketFactory.port", 465);
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
         props.put("mail.smtp.socketFactory.fallback", "false"); 
         try {
             //Class.forName("com.mysql.jdbc.Driver");       
