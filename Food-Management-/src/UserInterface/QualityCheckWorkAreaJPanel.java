@@ -7,8 +7,12 @@ package UserInterface;
 
 import UserInterface.ProcessQWorkRequestJPanel;
 import Business.EcoSystem;
+import Business.Enterprise.DistributorEnterprise;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.QualityCheckEnterprise;
+import Business.Network.Network;
 import Business.Organization.NGOAdminOrganization;
+import Business.Organization.Organization;
 import Business.Organization.QualityOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodRequirementRequest;
@@ -40,7 +44,7 @@ public class QualityCheckWorkAreaJPanel extends javax.swing.JPanel {
     //JPanel userProcessContainer, UserAccount account, QualityOrganization qualityOrganization, Enterprise enterprise
     public QualityCheckWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, QualityOrganization qualityOrganization, Enterprise enterprise, EcoSystem business) {
         initComponents();
-         this.userProcessContainer = userProcessContainer;
+        this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.enterprise=enterprise;
@@ -272,6 +276,39 @@ public class QualityCheckWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Request already approved!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
+         if(request.getReceiver()==userAccount)
+        {
+            request.setReceiver(null);
+        }
+
+        request.setMessage(request.getMessage());
+        request.setSender(userAccount);
+        request.setStatus("Sent to Packaging");
+
+        for (Network n : business.getNetworkList()) {
+
+            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+
+                if (e instanceof DistributorEnterprise) {
+
+                    Organization org = null;
+                    for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
+                        if (organization instanceof DistributorEnterprise) { 
+                            org = organization;
+                            break;
+                        }
+                    }
+                    if (org != null) {
+
+                        org.getWorkQueue().getWorkRequestList().add(request);
+                        userAccount.getWorkQueue().getWorkRequestList().add(request);
+                    }
+                }
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, "Request Successfully Sent for Packaging !");
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed

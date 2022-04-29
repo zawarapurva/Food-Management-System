@@ -407,6 +407,7 @@ public class RequestFoodJPanel extends javax.swing.JPanel {
                     System.out.println(e.getEnterpriseType().getValue().equals("NGO") + "Chal ra hai");
 
                     Organization org = null;
+                    System.out.print( "######" + e.getOrganizationDirectory().getOrganizationList());
                     for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
                         if (organization instanceof NGOAdminOrganization) { //changed from shlter to ngo organization
                             org = organization;

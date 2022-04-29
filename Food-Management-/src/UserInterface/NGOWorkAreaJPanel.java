@@ -8,12 +8,10 @@ package UserInterface;
 import Business.EcoSystem;
 import Business.Enterprise.DistributorEnterprise;
 import Business.Enterprise.Enterprise;
-import static Business.Enterprise.Enterprise.EnterpriseType.NGO;
 import Business.Network.Network;
 import Business.Organization.DistributorOrganization;
 import Business.Organization.NGOAdminOrganization;
 import Business.Organization.Organization;
-import static Business.Organization.Organization.Type.NgoFoodOrganization;
 import Business.Organization.ShelterOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodRequirementRequest;
@@ -39,6 +37,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private Enterprise enterprise;
     private NGOAdminOrganization ngoOrganization;
+    private ShelterOrganization shelterOrganization;
 
     public NGOWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
@@ -52,9 +51,10 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public void populateTable() {
-
+        System.out.println("###########");
+        System.out.println("###########" + ngoOrganization.getWorkQueue().getWorkRequestList());
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-
+        
         model.setRowCount(0);
 
         for (WorkRequest request : ngoOrganization.getWorkQueue().getWorkRequestList()) {
@@ -194,7 +194,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(assignJButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,7 +225,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(processJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSendtoDistributor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

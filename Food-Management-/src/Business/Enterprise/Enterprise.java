@@ -27,7 +27,6 @@ public abstract class Enterprise extends Organization{
         Distributor("Distributor"),
         QualityCheck("Quality Check"),
         Supplier("Supplier");
-       
         
         private String value;
         
@@ -98,7 +97,39 @@ public abstract class Enterprise extends Organization{
             return value;
         }
     }
-
+    
+    public enum EnumType6{
+       Supplier("Supplier"),GroceryFoodOrganization("Grocery Food Organization");
+        private String value;
+        private EnumType6(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
+        
+    public enum EnumType7{
+       Distributor("Distributor"),TransportFoodOrganization("Transport Food Organization");
+        private String value;
+        private EnumType7(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
+        
+    public enum EnumType8{
+       Distributor("Distributor"),PackagingFoodOrganization("Packaging Food Organization");
+        private String value;
+        private EnumType8(String value) {
+            this.value = value;
+        }
+        public String getValue() {
+            return value;
+        }
+    }
 
     public EnterpriseType getEnterpriseType() {
         return enterpriseType;

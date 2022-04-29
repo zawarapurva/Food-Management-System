@@ -301,15 +301,14 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Request already sent for Quality Check!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else if (!(quaRequest.getStatus().equalsIgnoreCase("Completed"))) {
-            JOptionPane.showMessageDialog(null, "Request yet to be approved by Distributer");
+            JOptionPane.showMessageDialog(null, "Request yet to be approved by Distributor");
             return;
         }
         if(quaRequest.getReceiver()==userAccount)
         {
             quaRequest.setReceiver(null);
         }
-        //String message = messageJTextField.getText();
-        //FoodRequirementRequest request = new FoodRequirementRequest();
+
         quaRequest.setMessage(quaRequest.getMessage());
         quaRequest.setSender(userAccount);
         quaRequest.setStatus("Sent to Quality");
@@ -318,8 +317,6 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
 
             for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
 
-                //   e.setEnterpriseType(Enterprise.EnterpriseType.QualityCheck);
-                //if(e.getEnterpriseType().getValue().equals("Quality Check"))
                 if (e instanceof QualityCheckEnterprise) {
 
                     Organization org = null;
