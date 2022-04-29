@@ -64,7 +64,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -124,11 +123,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane.setRightComponent(userProcessContainer);
 
-<<<<<<< HEAD
-        getContentPane().add(jSplitPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1612, 590));
-=======
-        getContentPane().add(jSplitPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
->>>>>>> parent of 18c9d69 (Merge branch 'SumedhaKasarla002966691' into main)
+        getContentPane().add(jSplitPane, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
