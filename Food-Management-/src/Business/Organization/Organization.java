@@ -30,7 +30,10 @@ public abstract class Organization {
         ShelterFoodOrganization("Shelter Organization"), 
         DistributorFoodOrganization("Distributor Organization"), 
         QualityCheckFoodOrganization("Quality Check Organization"),
-        SupplierFoodOrganization("Supplier Organization");
+        SupplierFoodOrganization("Supplier Organization"),
+        GroceryFoodOrganization("Grocery Organization"),
+        TransportFoodOrganization("Transport Organization"),
+        PackagingFoodOrganization("Packaging Organization");
         
         private String value;
         private Type(String value) {

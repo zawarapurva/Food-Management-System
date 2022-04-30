@@ -49,7 +49,21 @@ public class OrganizationDirectory {
         else if (type.getValue().equals(Organization.Type.SupplierFoodOrganization.getValue())){
             organization = new SupplierOrganization();
             organizationList.add(organization);
-        }    
+        }
+        else if (type.getValue().equals(Organization.Type.GroceryFoodOrganization.getValue())){
+            organization = new GroceryOrganization();
+            organizationList.add(organization);
+        } 
+        
+        else if (type.getValue().equals(Organization.Type.TransportFoodOrganization.getValue())){
+            organization = new TransportOrganization();
+            organizationList.add(organization);
+        } 
+                
+        else if (type.getValue().equals(Organization.Type.PackagingFoodOrganization.getValue())){
+            organization = new PackagingOrganization();
+            organizationList.add(organization);
+        } 
         
         return organization;
     }
