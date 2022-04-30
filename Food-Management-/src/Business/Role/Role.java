@@ -22,7 +22,10 @@ public abstract class Role {
     DistributorRole("DistributorRole"),
     QualityCheckRole("QualityCheckRole"),
     ShelterRole("ShelterRole"),
-    SupplierRole("SupplierRole");
+    SupplierRole("SupplierRole"),
+    PackagingRole("PackagingRole"),
+    TransportRole("TransportRole"),
+    GroceryRole("GroceryRole");
 
      private String value;
      
