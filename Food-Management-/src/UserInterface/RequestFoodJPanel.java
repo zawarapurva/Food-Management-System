@@ -270,8 +270,8 @@ public class RequestFoodJPanel extends javax.swing.JPanel {
 
         enterpriseLabel1.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
         enterpriseLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        enterpriseLabel1.setText("EnterPrise :");
-        add(enterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 120, 30));
+        enterpriseLabel1.setText("Enterprise :");
+        add(enterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 280, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
