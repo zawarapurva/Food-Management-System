@@ -255,28 +255,19 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Cannot Process the Request!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        System.out.println(InventoryDirectory.inventoryList+"inventory");
+
         for (Inventory inSupp : InventoryDirectory.getInventoryList()) {
             
             for (Products prod : request.getProductList()) {
                 if (prod.getProductName().equalsIgnoreCase(inSupp.getProductName())) {
                     System.out.println(prod.getProductName() + "   " + inSupp.getProductName());
                     if (prod.getQuantity() < inSupp.getQuantity()) {
-//                        suppCount=inSupp.getQuantity();
-//                        reqCount=prod.getQuantity();
-//                        suppCount=-reqCount;
-//                        inSupp.setQuantity(suppCount);
                         booleanList.add(true);
-                        //    flag = true;
-                        //  break;
 
                     } else {
                         reqProductMap.put(prod.getProductName(), prod.getQuantity());
                         System.out.println(reqProductMap + "Request Map");
                         booleanList.add(false);
-//   flag = false;
-//                        JOptionPane.showMessageDialog(null, "Insufficient Quantity for "+prod.getProductName());
-                        //  break;
                     }
                 }
             }
@@ -286,13 +277,13 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         } else {
             flag = true;
         }
-        System.out.println(flag + "FLAG KA VALUE");
         request.setStatus("Processing");
-
+        
         ProcessDWorkAreaJPanel processWorkRequestJPanel = new ProcessDWorkAreaJPanel(userProcessContainer, userAccount, request, flag, reqProductMap, enterprise, business);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        populateTable();
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
@@ -332,28 +323,24 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         quaRequest.setMessage(quaRequest.getMessage());
         quaRequest.setSender(userAccount);
         quaRequest.setStatus("Sent to Quality");
-
+        
         for (Network n : business.getNetworkList()) {
 
             for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
 
                 if (e instanceof QualityCheckEnterprise) {
 
-                    Organization org = null;
                     for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
-                        if (organization instanceof QualityOrganization) { //changed from shlter to ngo organization
-                            org = organization;
-                            break;
+                        if (organization instanceof QualityOrganization) { //changed from distributor to qualityCheck organization
+                            organization.getWorkQueue().getWorkRequestList().add(quaRequest);
+                            userAccount.getWorkQueue().getWorkRequestList().add(quaRequest);
                         }
-                    }
-                    if (org != null) {
-
-                        org.getWorkQueue().getWorkRequestList().add(quaRequest);
-                        userAccount.getWorkQueue().getWorkRequestList().add(quaRequest);
                     }
                 }
             }
         }
+        
+        populateTable();
 
         JOptionPane.showMessageDialog(null, "Request Successfully Sent for Quality Check!");
     }//GEN-LAST:event_btnSendtoQualityCheckActionPerformed
@@ -376,7 +363,10 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Request sent for Quality Check!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else if (quaRequest.getStatus().equalsIgnoreCase("Quality Check Approved")) {
-            JOptionPane.showMessageDialog(null, "Request yet to be approved by Distributor!");
+            JOptionPane.showMessageDialog(null, "Quality Check approved, Send for Packaging", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (!(quaRequest.getStatus().equalsIgnoreCase("Completed"))) {
+            JOptionPane.showMessageDialog(null, "Request yet to be approved by Distributor", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else if (quaRequest.getStatus().equalsIgnoreCase("Sent to Packaging")) {
             JOptionPane.showMessageDialog(null, "Request already sent for Packaging!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -398,23 +388,17 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
 
                 if (e instanceof DistributorEnterprise) {
 
-//                    Organization org = null;
                     for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
-                        if (organization instanceof PackagingOrganization) {
-//                            org = organization;
+                        if (organization instanceof PackagingOrganization) { // from Distributor to packaging Organization
                             organization.getWorkQueue().getWorkRequestList().add(quaRequest);
                             userAccount.getWorkQueue().getWorkRequestList().add(quaRequest);
-                           
                         }
                     }
-//                    if (org != null) {
-//
-//                        org.getWorkQueue().getWorkRequestList().add(quaRequest);
-//                        userAccount.getWorkQueue().getWorkRequestList().add(quaRequest);
-//                    }
                 }
             }
         }
+        
+        populateTable();
 
         JOptionPane.showMessageDialog(null, "Request Successfully Sent for Packaging!");
     }//GEN-LAST:event_btnSendtoPackagingActionPerformed

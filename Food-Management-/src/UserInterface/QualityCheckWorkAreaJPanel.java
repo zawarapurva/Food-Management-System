@@ -270,6 +270,7 @@ public class QualityCheckWorkAreaJPanel extends javax.swing.JPanel {
         }
         if (request.getReceiver().equals(userAccount) && (request.getStatus().equalsIgnoreCase("Pending") || request.getStatus().equalsIgnoreCase("Processing"))){
             request.setStatus("Processing");
+            populateTable();
             ProcessQWorkRequestJPanel processWorkRequestJPanel = new ProcessQWorkRequestJPanel(userProcessContainer, request);
             userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -281,39 +282,6 @@ public class QualityCheckWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Invalid Request", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-//        if(request.getReceiver()==userAccount)
-//        {
-//            request.setReceiver(null);
-//        }
-//
-//        request.setMessage(request.getMessage());
-//        request.setSender(userAccount);
-//        request.setStatus("Sent to Packaging");
-
-//        for (Network n : business.getNetworkList()) {
-//
-//            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-//
-//                if (e instanceof DistributorEnterprise) {
-//
-//                    Organization org = null;
-//                    for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
-//                        if (organization instanceof PackagingOrganization) { 
-//                            org = organization;
-//                            break;
-//                        }
-//                    }
-//                    if (org != null) {
-//
-//                        org.getWorkQueue().getWorkRequestList().add(request);
-//                        userAccount.getWorkQueue().getWorkRequestList().add(request);
-//                    }
-//                }
-//            }
-//        }
-
-//        JOptionPane.showMessageDialog(null, "Request Successfully Sent for Packaging !");
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
@@ -330,26 +298,20 @@ public class QualityCheckWorkAreaJPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
         model.setRowCount(0);model.setRowCount(0);
-        // FoodRequirementRequest distrequest = (FoodRequirementRequest)workRequestJTable.getValueAt(selectedRow, 0);
+
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
 
-        // for (WorkRequest request1 : userAccount.getWorkQueue().getWorkRequestList())
-        // {
-            //  if (request1=request)
-            //{
-                ArrayList<Products> productList = ((FoodRequirementRequest) request).getProductList();
-                if (productList!=null){
-                    for (Products p : productList) {
-                        Object row[] = new Object[3];
-                        row[0] = p;
-                        row[1] = p.getProductName();
-                        row[2] = p.getQuantity();
-                        model.addRow(row);
-                        //((DefaultTableModel) tblProducts.getModel()).addRow(row);
-                    }
-                }
-                // }
-            // }
+        ArrayList<Products> productList = ((FoodRequirementRequest) request).getProductList();
+        if (productList!=null){
+            for (Products p : productList) {
+                Object row[] = new Object[3];
+                row[0] = p;
+                row[1] = p.getProductName();
+                row[2] = p.getQuantity();
+                model.addRow(row);
+                //((DefaultTableModel) tblProducts.getModel()).addRow(row);
+            }
+        }
     }//GEN-LAST:event_showProductBtnActionPerformed
 
 

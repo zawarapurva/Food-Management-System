@@ -274,7 +274,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
             userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-
+            populateTable();
         } else {
             JOptionPane.showMessageDialog(null, "Request cannot be processed as it is " + request.getStatus(), "Warning", JOptionPane.WARNING_MESSAGE);
             return;
@@ -324,7 +324,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                 if (e instanceof DistributorEnterprise) {
 
                     for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
-                        if (organization instanceof DistributorOrganization) {
+                        if (organization instanceof DistributorOrganization) { //changed from ngo to distributor organization
                             organization.getWorkQueue().getWorkRequestList().add(distrequest);
                             userAccount.getWorkQueue().getWorkRequestList().add(distrequest);
                         }
@@ -332,6 +332,8 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
         }
+        
+        populateTable();
         
         JOptionPane.showMessageDialog(null, "Request Sent to Distributor Successfully!");
     }//GEN-LAST:event_btnSendtoDistributorActionPerformed

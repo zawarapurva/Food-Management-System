@@ -170,10 +170,11 @@ public class TransportWorkAreaJPanel extends javax.swing.JPanel {
         
         if (request.getReceiver().equals(userAccount) && (request.getStatus().equalsIgnoreCase("Sent to Transport"))){
             request.setStatus("Completed");
+            request.setMessage(request.getMessage());
             JOptionPane.showMessageDialog(null, "Request Successfully Completed!");
             populateTable();
-        }
-        else if(request.getStatus().equalsIgnoreCase("Completed")){
+            return;
+        } else if(request.getStatus().equalsIgnoreCase("Completed")){
             JOptionPane.showMessageDialog(null, "Request already Completed!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }

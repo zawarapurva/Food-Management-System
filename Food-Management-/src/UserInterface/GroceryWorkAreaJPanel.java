@@ -9,7 +9,7 @@ import Business.Enterprise.DistributorEnterprise;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
-import Business.Organization.PackagingOrganization;
+import Business.Organization.GroceryOrganization;
 import Business.Organization.TransportOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodRequirementRequest;
@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author apurvazawar
  */
-public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
+public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form PackagingWorkAreaJPanel
@@ -31,15 +31,15 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private Enterprise enterprise;
-    private PackagingOrganization packagingOrganization;
+    private GroceryOrganization groceryOrganization;
     
-    public PackagingWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, PackagingOrganization packagingOrganization, Enterprise enterprise, EcoSystem business) {
+    public GroceryWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, GroceryOrganization groceryOrganization, Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.enterprise=enterprise;
-        this.packagingOrganization = (PackagingOrganization)packagingOrganization;
+        this.groceryOrganization = (GroceryOrganization)groceryOrganization;
         populateTable();
     }
 
@@ -200,8 +200,8 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
       
-        if(packagingOrganization.getWorkQueue().getWorkRequestList().size() > 0) {
-            for( WorkRequest request : packagingOrganization.getWorkQueue().getWorkRequestList()) {
+        if(groceryOrganization.getWorkQueue().getWorkRequestList().size() > 0) {
+            for( WorkRequest request : groceryOrganization.getWorkQueue().getWorkRequestList()) {
                 Object[] row = new Object[4];
                 row[0] = request;
                 row[1] = request.getSender().getEmployee().getName();

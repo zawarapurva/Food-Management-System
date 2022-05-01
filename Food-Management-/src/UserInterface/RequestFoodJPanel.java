@@ -399,25 +399,14 @@ public class RequestFoodJPanel extends javax.swing.JPanel {
 
             for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
 
-                   e.setEnterpriseType(Enterprise.EnterpriseType.NGO);
-                   //below changes are made for twice appearance of request on Shelter screen
-                   //if (e.getEnterpriseType().getValue().equals("NGO"))
-                 if (e instanceof NGOEnterprise) {
+                    e.setEnterpriseType(Enterprise.EnterpriseType.NGO);
+                    if (e instanceof NGOEnterprise) {
 
-                    System.out.println(e.getEnterpriseType().getValue().equals("NGO") + "Chal ra hai");
-
-                    Organization org = null;
-                    System.out.print( "######" + e.getOrganizationDirectory().getOrganizationList());
                     for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
                         if (organization instanceof NGOAdminOrganization) { //changed from shlter to ngo organization
-                            org = organization;
-                            break;
+                            organization.getWorkQueue().getWorkRequestList().add(request);
+                            userAccount.getWorkQueue().getWorkRequestList().add(request);
                         }
-                    }
-                    if (org != null) {
-
-                        org.getWorkQueue().getWorkRequestList().add(request);
-                        userAccount.getWorkQueue().getWorkRequestList().add(request);
                     }
                 }
             }
@@ -528,7 +517,7 @@ public class RequestFoodJPanel extends javax.swing.JPanel {
 
     private void backJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton1ActionPerformed
         
-         userProcessContainer.remove(this);
+        userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         ShelterWorkAreaJPanel dwjp = (ShelterWorkAreaJPanel) component;
