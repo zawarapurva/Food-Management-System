@@ -35,7 +35,7 @@
                       <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="383" pref="383" max="-2" attributes="0"/>
-                          <Component id="btnDelivered" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSentToTransport" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="488" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -57,7 +57,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="514" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnDelivered" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="btnSentToTransport" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -90,7 +90,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshJButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnDelivered">
+    <Component class="javax.swing.JButton" name="btnSentToTransport">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -101,7 +101,7 @@
         <Property name="text" type="java.lang.String" value="Send for Transport"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeliveredActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSentToTransportActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

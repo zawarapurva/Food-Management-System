@@ -10,7 +10,6 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.DistributorOrganization;
 import Business.Organization.Organization;
-import Business.Organization.QualityOrganization;
 import Business.Organization.TransportOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
@@ -80,7 +79,7 @@ public class TransportWorkAreaJPanel extends javax.swing.JPanel {
 
         btnDelivered.setBackground(new java.awt.Color(255, 255, 255));
         btnDelivered.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
-        btnDelivered.setText("Delivered");
+        btnDelivered.setText("Delivered to Shelter");
         btnDelivered.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeliveredActionPerformed(evt);
@@ -129,7 +128,7 @@ public class TransportWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(383, 383, 383)
                             .addComponent(btnDelivered)
-                            .addGap(0, 554, Short.MAX_VALUE)))
+                            .addGap(0, 479, Short.MAX_VALUE)))
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
@@ -162,17 +161,20 @@ public class TransportWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a request!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
         FoodRequirementRequest request = (FoodRequirementRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
-        if (request.getReceiver().equals(userAccount) && (request.getStatus().equalsIgnoreCase("Packaging"))){
+        
+        if(request.getStatus().equalsIgnoreCase("Sent to Transport")) {
+            request.setReceiver(userAccount);
+        }
+        
+        if (request.getReceiver().equals(userAccount) && (request.getStatus().equalsIgnoreCase("Sent to Transport"))){
             request.setStatus("Completed");
-             populateTable();
+            JOptionPane.showMessageDialog(null, "Request Successfully Completed!");
+            populateTable();
         }
         else if(request.getStatus().equalsIgnoreCase("Completed")){
             JOptionPane.showMessageDialog(null, "Request already Completed!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        } else {
-            JOptionPane.showMessageDialog(null, "Invalid Request", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
     }//GEN-LAST:event_btnDeliveredActionPerformed
@@ -183,14 +185,16 @@ public class TransportWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
       
-        for( WorkRequest request : transportOrganization.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[4];
-            row[0] = request;
-            row[1] = request.getSender().getEmployee().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
-            row[3] = request.getStatus();
-            
-            model.addRow(row);
+        if(!transportOrganization.getWorkQueue().getWorkRequestList().isEmpty()) {
+            for( WorkRequest request : transportOrganization.getWorkQueue().getWorkRequestList()) {
+                Object[] row = new Object[4];
+                row[0] = request;
+                row[1] = request.getSender().getEmployee().getName();
+                row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+                row[3] = request.getStatus();
+
+                model.addRow(row);
+            }
         }
     }
 

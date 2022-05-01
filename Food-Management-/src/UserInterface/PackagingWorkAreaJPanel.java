@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.PackagingOrganization;
+import Business.Organization.TransportOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodRequirementRequest;
 import Business.WorkQueue.WorkRequest;
@@ -32,7 +33,7 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private PackagingOrganization packagingOrganization;
     
-    public PackagingWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, PackagingOrganization transportOrganization, Enterprise enterprise, EcoSystem business) {
+    public PackagingWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, PackagingOrganization packagingOrganization, Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
@@ -40,9 +41,6 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise=enterprise;
         this.packagingOrganization = (PackagingOrganization)packagingOrganization;
         populateTable();
-    }
-    public PackagingWorkAreaJPanel() {
-        initComponents();
     }
 
     /**
@@ -56,7 +54,7 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         refreshJButton = new javax.swing.JButton();
-        btnDelivered = new javax.swing.JButton();
+        btnSentToTransport = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
 
@@ -76,12 +74,12 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDelivered.setBackground(new java.awt.Color(255, 255, 255));
-        btnDelivered.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
-        btnDelivered.setText("Send for Transport");
-        btnDelivered.addActionListener(new java.awt.event.ActionListener() {
+        btnSentToTransport.setBackground(new java.awt.Color(255, 255, 255));
+        btnSentToTransport.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
+        btnSentToTransport.setText("Send for Transport");
+        btnSentToTransport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeliveredActionPerformed(evt);
+                btnSentToTransportActionPerformed(evt);
             }
         });
 
@@ -126,7 +124,7 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(383, 383, 383)
-                            .addComponent(btnDelivered)
+                            .addComponent(btnSentToTransport)
                             .addGap(0, 488, Short.MAX_VALUE)))
                     .addContainerGap()))
         );
@@ -142,7 +140,7 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
                     .addGap(18, 18, 18)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(btnDelivered, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSentToTransport, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -152,7 +150,7 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Requests Updated!");
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
-    private void btnDeliveredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveredActionPerformed
+    private void btnSentToTransportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSentToTransportActionPerformed
 
         int selectedRow = workRequestJTable.getSelectedRow();
 
@@ -161,52 +159,39 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         FoodRequirementRequest request = (FoodRequirementRequest)workRequestJTable.getValueAt(selectedRow, 0);
-
-        if (request.getReceiver().equals(userAccount) && (request.getStatus().equalsIgnoreCase("Packaging"))){
-            request.setStatus("Transport");
-            populateTable();
-        }
-        else if(request.getStatus().equalsIgnoreCase("Completed")){
+        
+        if(request.getStatus().equalsIgnoreCase("Completed")){
             JOptionPane.showMessageDialog(null, "Request already Completed!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        } else {
-            JOptionPane.showMessageDialog(null, "Invalid Request", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
                
-         if(request.getReceiver()==userAccount)
+        if(request.getReceiver()==userAccount)
         {
             request.setReceiver(null);
         }
 
         request.setMessage(request.getMessage());
         request.setSender(userAccount);
-        request.setStatus("Sent to Tranport");
-
+        request.setStatus("Sent to Transport");
+        
         for (Network n : business.getNetworkList()) {
 
             for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
 
                 if (e instanceof DistributorEnterprise) {
 
-                    Organization org = null;
                     for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
-                        if (organization instanceof DistributorEnterprise) { 
-                            org = organization;
-                            break;
+                        if (organization instanceof TransportOrganization) { 
+                            organization.getWorkQueue().getWorkRequestList().add(request);
+                            userAccount.getWorkQueue().getWorkRequestList().add(request);
                         }
-                    }
-                    if (org != null) {
-
-                        org.getWorkQueue().getWorkRequestList().add(request);
-                        userAccount.getWorkQueue().getWorkRequestList().add(request);
                     }
                 }
             }
         }
 
         JOptionPane.showMessageDialog(null, "Request Successfully Sent for Transport !");
-    }//GEN-LAST:event_btnDeliveredActionPerformed
+    }//GEN-LAST:event_btnSentToTransportActionPerformed
 
     
     public void populateTable() {
@@ -215,19 +200,21 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
       
-        for( WorkRequest request : packagingOrganization.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[4];
-            row[0] = request;
-            row[1] = request.getSender().getEmployee().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
-            row[3] = request.getStatus();
-            
-            model.addRow(row);
+        if(packagingOrganization.getWorkQueue().getWorkRequestList().size() > 0) {
+            for( WorkRequest request : packagingOrganization.getWorkQueue().getWorkRequestList()) {
+                Object[] row = new Object[4];
+                row[0] = request;
+                row[1] = request.getSender().getEmployee().getName();
+                row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+                row[3] = request.getStatus();
+
+                model.addRow(row);
+            }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelivered;
+    private javax.swing.JButton btnSentToTransport;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshJButton;

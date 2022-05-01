@@ -35,7 +35,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="383" pref="383" max="-2" attributes="0"/>
                           <Component id="btnDelivered" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="554" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="479" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -97,7 +97,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Bodoni MT" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Delivered"/>
+        <Property name="text" type="java.lang.String" value="Delivered to Shelter"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeliveredActionPerformed"/>

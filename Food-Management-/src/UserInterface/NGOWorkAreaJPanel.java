@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Pankaj Gorav
+ * @author apurvazawar
  */
 public class NGOWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -191,7 +191,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
@@ -299,7 +299,6 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
         FoodRequirementRequest distrequest = (FoodRequirementRequest) workRequestJTable.getValueAt(selectedRow, 0);
 
         if (distrequest.getStatus().equalsIgnoreCase("Rejected")) {
-
             JOptionPane.showMessageDialog(null, "Request has been rejected!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -309,43 +308,32 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
 
-        // }
-        //String message = messageJTextField.getText();
-        //FoodRequirementRequest request = new FoodRequirementRequest();
         distrequest.setMessage(distrequest.getMessage());
         distrequest.setSender(userAccount);
         distrequest.setStatus("Sent to Distributor");
-        
-        
         
         if(distrequest.getReceiver()==userAccount){
             distrequest.setReceiver(null);
             
         }
-        JOptionPane.showMessageDialog(null, "Request Sent to Distributor Successfully!");
         
         for (Network n : business.getNetworkList()) {
 
             for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
 
-                // e.setEnterpriseType(Enterprise.EnterpriseType.Distributor);
                 if (e instanceof DistributorEnterprise) {
 
-                    Organization org = null;
                     for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
-                        if (organization instanceof DistributorOrganization) { //changed from shlter to ngo organization
-                            org = organization;
-                            break;
+                        if (organization instanceof DistributorOrganization) {
+                            organization.getWorkQueue().getWorkRequestList().add(distrequest);
+                            userAccount.getWorkQueue().getWorkRequestList().add(distrequest);
                         }
-                    }
-                    if (org != null) {
-
-                        org.getWorkQueue().getWorkRequestList().add(distrequest);
-                        userAccount.getWorkQueue().getWorkRequestList().add(distrequest);
                     }
                 }
             }
         }
+        
+        JOptionPane.showMessageDialog(null, "Request Sent to Distributor Successfully!");
     }//GEN-LAST:event_btnSendtoDistributorActionPerformed
 
     private void showProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProductBtnActionPerformed

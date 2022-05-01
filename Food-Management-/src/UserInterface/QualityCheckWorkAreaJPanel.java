@@ -13,6 +13,7 @@ import Business.Enterprise.QualityCheckEnterprise;
 import Business.Network.Network;
 import Business.Organization.NGOAdminOrganization;
 import Business.Organization.Organization;
+import Business.Organization.PackagingOrganization;
 import Business.Organization.QualityOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodRequirementRequest;
@@ -26,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Pankaj Gorav
+ * @author apurvazawar
  */
 public class QualityCheckWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -59,15 +60,18 @@ public class QualityCheckWorkAreaJPanel extends javax.swing.JPanel {
         
         model.setRowCount(0);
       
-        for( WorkRequest request : qualityOrganization.getWorkQueue().getWorkRequestList())
-        {
-            Object[] row = new Object[4];
-            row[0] = request;
-            row[1] = request.getSender().getEmployee().getName();
-            row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
-            row[3] = request.getStatus();
-            
-            model.addRow(row);
+        if(!qualityOrganization.getWorkQueue().getWorkRequestList().isEmpty()) {
+           
+            for( WorkRequest request : qualityOrganization.getWorkQueue().getWorkRequestList())
+            {
+                Object[] row = new Object[4];
+                row[0] = request;
+                row[1] = request.getSender().getEmployee().getName();
+                row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+                row[3] = request.getStatus();
+
+                model.addRow(row);
+            } 
         }
     }
     
@@ -194,7 +198,7 @@ public class QualityCheckWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 882, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshJButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -265,50 +269,51 @@ public class QualityCheckWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         if (request.getReceiver().equals(userAccount) && (request.getStatus().equalsIgnoreCase("Pending") || request.getStatus().equalsIgnoreCase("Processing"))){
-            
             request.setStatus("Processing");
             ProcessQWorkRequestJPanel processWorkRequestJPanel = new ProcessQWorkRequestJPanel(userProcessContainer, request);
             userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-        }
-        else if(request.getStatus().equalsIgnoreCase("Completed")){
+        } else if(request.getStatus().equalsIgnoreCase("Quality Check Approved")){
             JOptionPane.showMessageDialog(null, "Request already approved!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Request", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
-         if(request.getReceiver()==userAccount)
-        {
-            request.setReceiver(null);
-        }
+//        if(request.getReceiver()==userAccount)
+//        {
+//            request.setReceiver(null);
+//        }
+//
+//        request.setMessage(request.getMessage());
+//        request.setSender(userAccount);
+//        request.setStatus("Sent to Packaging");
 
-        request.setMessage(request.getMessage());
-        request.setSender(userAccount);
-        request.setStatus("Sent to Packaging");
+//        for (Network n : business.getNetworkList()) {
+//
+//            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+//
+//                if (e instanceof DistributorEnterprise) {
+//
+//                    Organization org = null;
+//                    for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
+//                        if (organization instanceof PackagingOrganization) { 
+//                            org = organization;
+//                            break;
+//                        }
+//                    }
+//                    if (org != null) {
+//
+//                        org.getWorkQueue().getWorkRequestList().add(request);
+//                        userAccount.getWorkQueue().getWorkRequestList().add(request);
+//                    }
+//                }
+//            }
+//        }
 
-        for (Network n : business.getNetworkList()) {
-
-            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
-
-                if (e instanceof DistributorEnterprise) {
-
-                    Organization org = null;
-                    for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
-                        if (organization instanceof DistributorEnterprise) { 
-                            org = organization;
-                            break;
-                        }
-                    }
-                    if (org != null) {
-
-                        org.getWorkQueue().getWorkRequestList().add(request);
-                        userAccount.getWorkQueue().getWorkRequestList().add(request);
-                    }
-                }
-            }
-        }
-
-        JOptionPane.showMessageDialog(null, "Request Successfully Sent for Packaging !");
+//        JOptionPane.showMessageDialog(null, "Request Successfully Sent for Packaging !");
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
