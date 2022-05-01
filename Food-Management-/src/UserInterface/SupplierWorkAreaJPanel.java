@@ -92,6 +92,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         tblProducts = new javax.swing.JTable();
         showProductBtn = new javax.swing.JButton();
         btnSendToGrocery = new javax.swing.JButton();
+        enterpriseLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 51, 51));
 
@@ -188,6 +189,10 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        enterpriseLabel2.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
+        enterpriseLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        enterpriseLabel2.setText("Products");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -202,15 +207,16 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(refreshJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(showProductBtn)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(assignJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSendToGrocery, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(assignJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSendToGrocery, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(enterpriseLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(showProductBtn)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -228,11 +234,13 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnSendToGrocery, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterpriseLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(showProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(showProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -264,27 +272,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
             request.setReceiver(null);
 
-            System.out.println(request.getSuppProductList() + "Suppliser List");
-
-//            for (Inventory inSupp : InventoryDirectory.getInventoryList()) {
-//                for (Products prod : request.getSuppProductList()) {
-//                    if (prod.getProductName().equalsIgnoreCase(inSupp.getProductName())) {
-//                        count = prod.getQuantity();
-//                        oldCount = inSupp.getQuantity();
-//                        newCount = count + oldCount;
-//                        inSupp.setQuantity(newCount);
-//                        System.out.println(prod.getProductName());
-//                        System.out.println(oldCount + "oldCount");
-//                        System.out.println(newCount + "newCount");
-////                        suppCount=inSupp.getQuantity();
-////                        reqCount=prod.getQuantity();
-////                        suppCount=-reqCount;
-////                        inSupp.setQuantity(suppCount);
-//
-//                    }
-//                }
-//            }
-            System.out.println("=---------2nd for Prod Name");
             int reqCount = 0, suppCount = 0, changeCount = 0;
             for (Inventory inSupp : InventoryDirectory.getInventoryList()) {
                 for (Products prod : request.getProductList()) {
@@ -298,10 +285,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                             changeCount = suppCount - reqCount;
                             inSupp.setQuantity(changeCount);
                             System.out.println("CHECK COUNT"+ changeCount);
-//                        suppCount=inSupp.getQuantity();
-//                        reqCount=prod.getQuantity();
-//                        suppCount=-reqCount;
-//                        inSupp.setQuantity(suppCount);
                         }
                         else
                         {
@@ -313,8 +296,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
             //****************************************changed
-            //resultJTextField.setText();
-            //   request.setRequestResult("Approved");
             request.setStatus("Sent to Quality");
             if (request.getReceiver() == userAccount) {
                 this.request.setReceiver(null);
@@ -325,8 +306,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
                 for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
 
-                    //   e.setEnterpriseType(Enterprise.EnterpriseType.QualityCheck);
-                    //if(e.getEnterpriseType().getValue().equals("Quality Check"))
                     if (e instanceof QualityCheckEnterprise) {
 
                         Organization org = null;
@@ -396,7 +375,10 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         if(request.getStatus().equalsIgnoreCase("Completed")){
             JOptionPane.showMessageDialog(null, "Request already Completed!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
-        }
+        } else if(request.getStatus().equalsIgnoreCase("Sent to Grocery")){
+            JOptionPane.showMessageDialog(null, "Request pending with Grocery!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } 
                
         if(request.getReceiver()==userAccount)
         {
@@ -423,7 +405,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
         populateTable();
-        JOptionPane.showMessageDialog(null, "Request Successfully Sent for Transport !");                                                  
+        JOptionPane.showMessageDialog(null, "Request Successfully Sent for Grocery !");                                                  
     }//GEN-LAST:event_btnSendToGroceryActionPerformed
 
 
@@ -432,6 +414,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnSendToGrocery;
     private javax.swing.JLabel enterpriseLabel1;
+    private javax.swing.JLabel enterpriseLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton refreshJButton;

@@ -65,13 +65,14 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblProducts = new javax.swing.JTable();
         showProductBtn = new javax.swing.JButton();
+        enterpriseLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 51, 51));
         setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Packaging Work Request");
+        jLabel1.setText("Grocery Dashboard");
 
         refreshJButton.setBackground(new java.awt.Color(255, 255, 255));
         refreshJButton.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
@@ -84,7 +85,7 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
 
         btnSentToSupplier.setBackground(new java.awt.Color(255, 255, 255));
         btnSentToSupplier.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
-        btnSentToSupplier.setText("Send to Supplier");
+        btnSentToSupplier.setText("Request Fulfilled");
         btnSentToSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSentToSupplierActionPerformed(evt);
@@ -143,6 +144,10 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        enterpriseLabel2.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
+        enterpriseLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        enterpriseLabel2.setText("Products");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,9 +156,11 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(enterpriseLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(showProductBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(showProductBtn)
-                        .addGap(18, 18, 18)
                         .addComponent(btnSentToSupplier)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -170,14 +177,16 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(315, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(btnSentToSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showProductBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterpriseLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(showProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSentToSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -185,8 +194,8 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addComponent(refreshJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(340, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(406, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -198,78 +207,33 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
     private void btnSentToSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSentToSupplierActionPerformed
 
         int selectedRow = workRequestJTable.getSelectedRow();
-        int count = 0, oldCount = 0, newCount = 0;
         if (selectedRow < 0) {
             return;
         }
         FoodRequirementRequest request = (FoodRequirementRequest) workRequestJTable.getValueAt(selectedRow, 0);
 
+        request.setStatus("Sent to Quality");
         if (request.getReceiver() == userAccount) {
-
-            request.setReceiver(null);
-
-            int reqCount = 0, suppCount = 0, changeCount = 0;
-            for (Inventory inSupp : InventoryDirectory.getInventoryList()) {
-                for (Products prod : request.getProductList()) {
-
-                    System.out.println(prod.getProductName() + "Prod Name");
-                    if (prod.getProductName().equalsIgnoreCase(inSupp.getProductName())) {
-                        if (prod.getQuantity() < inSupp.getQuantity()) {
-                            System.out.println("CHECK COUNT"+ prod.getProductName());
-                            suppCount = inSupp.getQuantity();
-                            reqCount = prod.getQuantity();
-                            changeCount = suppCount - reqCount;
-                            inSupp.setQuantity(changeCount);
-                            System.out.println("CHECK COUNT"+ changeCount);
-//                        suppCount=inSupp.getQuantity();
-//                        reqCount=prod.getQuantity();
-//                        suppCount=-reqCount;
-//                        inSupp.setQuantity(suppCount);
-                        }
-                        else
-                        {
-                            System.out.println("CHECK BIGEER "+ prod.getProductName()+"  "+ prod.getQuantity());
-                            inSupp.setQuantity(0);
-                            System.out.println("CHECK BIGEER "+ inSupp.getProductName()+"  "+ inSupp.getQuantity());
-                        }
-                    }
-                }
-            }
-
-            request.setStatus("Sent to Quality");
-            if (request.getReceiver() == userAccount) {
-                this.request.setReceiver(null);
-
-            }
+            this.request.setReceiver(null);
+        }
 
             for (Network n : business.getNetworkList()) {
 
                 for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
 
-                    //   e.setEnterpriseType(Enterprise.EnterpriseType.QualityCheck);
-                    //if(e.getEnterpriseType().getValue().equals("Quality Check"))
                     if (e instanceof QualityCheckEnterprise) {
 
-                        Organization org = null;
                         for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
-                            if (organization instanceof QualityOrganization) { //changed from shlter to ngo organization
-                                org = organization;
+                            if (organization instanceof QualityOrganization) { //changed from grocery to qualityCheck organization
+                                organization.getWorkQueue().getWorkRequestList().add(request);
+                                userAccount.getWorkQueue().getWorkRequestList().add(request);
                                 break;
                             }
-                        }
-                        if (org != null) {
-
-                            org.getWorkQueue().getWorkRequestList().add(request);
-                            userAccount.getWorkQueue().getWorkRequestList().add(request);
                         }
                     }
                 }
             }
-            JOptionPane.showMessageDialog(null, "Request Successfully Approved!!");
-        } else {
-            JOptionPane.showMessageDialog(null, "Request Assign FIRST!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+            JOptionPane.showMessageDialog(null, "Request successfully fulfilled!!");
     }//GEN-LAST:event_btnSentToSupplierActionPerformed
 
     private void showProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProductBtnActionPerformed
@@ -321,6 +285,7 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSentToSupplier;
+    private javax.swing.JLabel enterpriseLabel2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
