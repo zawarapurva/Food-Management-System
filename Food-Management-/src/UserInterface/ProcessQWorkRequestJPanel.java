@@ -648,7 +648,7 @@ public class ProcessQWorkRequestJPanel extends javax.swing.JPanel {
                         .addGap(5, 5, 5)
                         .addComponent(jLabel3))
                     .addComponent(finalProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -984,8 +984,8 @@ public class ProcessQWorkRequestJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         request.setRequestResult(resultJTextField.getText());
-        request.setStatus("Completed");
-        JOptionPane.showMessageDialog(null, "Food Request Approved for Quality Check!");
+        request.setStatus("Quality Check Approved");
+        JOptionPane.showMessageDialog(null, "Food Request Approved for Quality Check");
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void btnGenerateReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateReportActionPerformed

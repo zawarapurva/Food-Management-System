@@ -69,7 +69,7 @@ public class ShelterWorkAreaJPanel extends javax.swing.JPanel {
     }
      
      //adding below method to get product data
-        public void populateData() {
+    public void populateData() {
     
         DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
 
@@ -77,20 +77,17 @@ public class ShelterWorkAreaJPanel extends javax.swing.JPanel {
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList())
         {
         ArrayList<Products> productList = ((FoodRequirementRequest) request).getProductList();
-         if (productList!=null){
-            for (Products p : productList) {
-                Object row[] = new Object[3];
-                row[0] = p;
-                row[1] = p.getProductName();
-                row[2] = p.getQuantity();
-                ((DefaultTableModel) tblProducts.getModel()).addRow(row);  
-        }
-         }
-        }
-        
-        }
-     
-     
+            if (productList!=null){
+               for (Products p : productList) {
+                   Object row[] = new Object[3];
+                   row[0] = p;
+                   row[1] = p.getProductName();
+                   row[2] = p.getQuantity();
+                   ((DefaultTableModel) tblProducts.getModel()).addRow(row);  
+                }
+            }
+        }  
+    }
      
     /**
      * This method is called from within the constructor to initialize the form.
@@ -260,27 +257,19 @@ public class ShelterWorkAreaJPanel extends javax.swing.JPanel {
        
         DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
         model.setRowCount(0);model.setRowCount(0);
-       // FoodRequirementRequest distrequest = (FoodRequirementRequest)workRequestJTable.getValueAt(selectedRow, 0);
-         WorkRequest request = (WorkRequest)shelterWorkRequestTable.getValueAt(selectedRow, 0);
-         
-        //for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList())
-        //{
+
+        WorkRequest request = (WorkRequest)shelterWorkRequestTable.getValueAt(selectedRow, 0);
+
         ArrayList<Products> productList = ((FoodRequirementRequest) request).getProductList();
-         if (productList!=null){
+        if (productList!=null){
             for (Products p : productList) {
-                Object row[] = new Object[3];
-                row[0] = p;
-                row[1] = p.getProductName();
-                row[2] = p.getQuantity();
-                ((DefaultTableModel) tblProducts.getModel()).addRow(row);  
-        }
-         }
-        //}
-        
-        
-        
-        
-        
+               Object row[] = new Object[3];
+               row[0] = p;
+               row[1] = p.getProductName();
+               row[2] = p.getQuantity();
+               ((DefaultTableModel) tblProducts.getModel()).addRow(row);  
+            }
+        }    
     }//GEN-LAST:event_showProductBtnActionPerformed
 
 

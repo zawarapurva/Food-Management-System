@@ -8,12 +8,10 @@ package UserInterface;
 import Business.EcoSystem;
 import Business.Enterprise.DistributorEnterprise;
 import Business.Enterprise.Enterprise;
-import static Business.Enterprise.Enterprise.EnterpriseType.NGO;
 import Business.Network.Network;
 import Business.Organization.DistributorOrganization;
 import Business.Organization.NGOAdminOrganization;
 import Business.Organization.Organization;
-import static Business.Organization.Organization.Type.NgoFoodOrganization;
 import Business.Organization.ShelterOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodRequirementRequest;
@@ -27,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Pankaj Gorav
+ * @author apurvazawar
  */
 public class NGOWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -39,6 +37,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private Enterprise enterprise;
     private NGOAdminOrganization ngoOrganization;
+    private ShelterOrganization shelterOrganization;
 
     public NGOWorkAreaJPanel(JPanel userProcessContainer, UserAccount userAccount, Organization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
@@ -52,9 +51,10 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public void populateTable() {
-
+        System.out.println("###########");
+        System.out.println("###########" + ngoOrganization.getWorkQueue().getWorkRequestList());
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-
+        
         model.setRowCount(0);
 
         for (WorkRequest request : ngoOrganization.getWorkQueue().getWorkRequestList()) {
@@ -191,10 +191,10 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(refreshJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(assignJButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,7 +225,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(processJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(showProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSendtoDistributor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -274,7 +274,7 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
             userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-
+            populateTable();
         } else {
             JOptionPane.showMessageDialog(null, "Request cannot be processed as it is " + request.getStatus(), "Warning", JOptionPane.WARNING_MESSAGE);
             return;
@@ -299,7 +299,6 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
         FoodRequirementRequest distrequest = (FoodRequirementRequest) workRequestJTable.getValueAt(selectedRow, 0);
 
         if (distrequest.getStatus().equalsIgnoreCase("Rejected")) {
-
             JOptionPane.showMessageDialog(null, "Request has been rejected!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -309,43 +308,34 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
 
-        // }
-        //String message = messageJTextField.getText();
-        //FoodRequirementRequest request = new FoodRequirementRequest();
         distrequest.setMessage(distrequest.getMessage());
         distrequest.setSender(userAccount);
         distrequest.setStatus("Sent to Distributor");
-        
-        
         
         if(distrequest.getReceiver()==userAccount){
             distrequest.setReceiver(null);
             
         }
-        JOptionPane.showMessageDialog(null, "Request Sent to Distributor Successfully!");
         
         for (Network n : business.getNetworkList()) {
 
             for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
 
-                // e.setEnterpriseType(Enterprise.EnterpriseType.Distributor);
                 if (e instanceof DistributorEnterprise) {
 
-                    Organization org = null;
                     for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
-                        if (organization instanceof DistributorOrganization) { //changed from shlter to ngo organization
-                            org = organization;
-                            break;
+                        if (organization instanceof DistributorOrganization) { //changed from ngo to distributor organization
+                            organization.getWorkQueue().getWorkRequestList().add(distrequest);
+                            userAccount.getWorkQueue().getWorkRequestList().add(distrequest);
                         }
-                    }
-                    if (org != null) {
-
-                        org.getWorkQueue().getWorkRequestList().add(distrequest);
-                        userAccount.getWorkQueue().getWorkRequestList().add(distrequest);
                     }
                 }
             }
         }
+        
+        populateTable();
+        
+        JOptionPane.showMessageDialog(null, "Request Sent to Distributor Successfully!");
     }//GEN-LAST:event_btnSendtoDistributorActionPerformed
 
     private void showProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProductBtnActionPerformed

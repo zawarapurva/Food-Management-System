@@ -278,11 +278,12 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", 465);
-        props.put("mail.smtp.user", "voidxisalive@gmail.com");
+        props.put("mail.smtp.user", "aed123.fms@gmail.com");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.debug", "true");
         props.put("mail.smtp.socketFactory.port", 465);
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.socketFactory.fallback", "false"); 
         try {
@@ -293,11 +294,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
                 message.setText("The Network is :"+" "+networkJComboBox.getSelectedItem()+"\n\n"+"The Enterprise is : "+" "+enterpriseJComboBox.getSelectedItem()+"\n\n"+"The UserName is :"+" "+usernameJTextField.getText()+"\n\n"+"The Password is : " + " " +password);
                 message.setSubject("New Login Credentials for Enterprise "+enterpriseJComboBox.getSelectedItem());
-                message.setFrom(new InternetAddress("voidxisalive@gmail.com"));
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress("voidxisalive@gmail.com"));
+                message.setFrom(new InternetAddress("aed123.fms@gmail.com"));
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress("aed123.fms@gmail.com"));
                 message.saveChanges();
                 javax.mail.Transport transport = session.getTransport("smtp");
-                transport.connect("smtp.gmail.com", "voidxisalive@gmail.com", "Voidx@12345");
+                transport.connect("smtp.gmail.com", "aed123.fms@gmail.com", "aed@fms123");
                 transport.sendMessage(message, message.getAllRecipients());
                 transport.close();
                 

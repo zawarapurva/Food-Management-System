@@ -206,14 +206,7 @@ public class MainJFrame extends javax.swing.JFrame {
         props.put("mail.smtp.ssl.protocols", "TLSv1.2");
         props.put("mail.smtp.socketFactory.fallback", "false"); 
         try {
-            //Class.forName("com.mysql.jdbc.Driver");       
-           // Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/shoppingcart","root","Bintu2018$");
-           // String query = "select Password from users where EmailAddress LIKE '"+jTextFieldEmailAdd.getText().trim()+"'";
-            //PreparedStatement statmnt = con.prepareStatement(query);
-            //ResultSet result = statmnt.executeQuery();               
-           // if (result.next())
-           // {   
-               // String fetchedPassword = result.getString("Password");               
+             
                 Session session = Session.getDefaultInstance(props, null);
                 session.setDebug(true);
                 MimeMessage message = new MimeMessage(session);
@@ -226,11 +219,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 transport.connect("smtp.gmail.com", "aed123.fms@gmail.com", "aed@fms123");
                 transport.sendMessage(message, message.getAllRecipients());
                 transport.close();
-                //jLabelResponse.setText("Your password mailed to you");         
-           // }
         } catch (Exception e) {
             e.printStackTrace();  
-            //jLabelResponse.setText("Email Address not found");
         }  
         //*************************************End of addition for sending mail
 
