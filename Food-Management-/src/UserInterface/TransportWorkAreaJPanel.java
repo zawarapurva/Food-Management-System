@@ -223,6 +223,7 @@ public class TransportWorkAreaJPanel extends javax.swing.JPanel {
         if (request.getReceiver().equals(userAccount) && (request.getStatus().equalsIgnoreCase("Sent to Transport"))){
             request.setStatus("Completed");
             request.setMessage(request.getMessage());
+            request.setRequestResult("QUALIFIED");
             JOptionPane.showMessageDialog(null, "Request Successfully Completed!");
             populateTable();
             return;
