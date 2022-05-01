@@ -195,22 +195,22 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         organizationJComboBox.removeAllItems();
 
-        System.out.println("enterprise value" + enterprise.getEnterpriseType().getValue());
+        System.out.println("enterprise value " + enterprise.getEnterpriseType().getValue());
         
-        if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnumType1.NGO.getValue())) {
+//        if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnumType1.NGO.getValue())) {
             organizationJComboBox.addItem(Organization.Type.NgoFoodOrganization);
-        } else if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnumType2.Shelter.getValue())) {
+//        } else if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnumType2.Shelter.getValue())) {
             organizationJComboBox.addItem(Organization.Type.ShelterFoodOrganization);
-        } else if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnumType3.Distributor.getValue())) {
+//        } else if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnumType3.Distributor.getValue())) {
             organizationJComboBox.addItem(Organization.Type.DistributorFoodOrganization);
             organizationJComboBox.addItem(Organization.Type.TransportFoodOrganization);
             organizationJComboBox.addItem(Organization.Type.PackagingFoodOrganization);
-        } else if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnumType4.QualityCheck.getValue())) {
+//        } else if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnumType4.QualityCheck.getValue())) {
             organizationJComboBox.addItem(Organization.Type.QualityCheckFoodOrganization);
-        } else if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnumType5.Supplier.getValue())) {
+//        } else if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnumType5.Supplier.getValue())) {
             organizationJComboBox.addItem(Organization.Type.SupplierFoodOrganization);
             organizationJComboBox.addItem(Organization.Type.GroceryFoodOrganization);
-        }
+//        }
 
     }
 

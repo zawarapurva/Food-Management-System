@@ -350,10 +350,6 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnSupplierFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierFoodActionPerformed
         // TODO add your handling code here:
-        Organization orgSupp=null;
-//        resultJTextField.setText("Sent to Supplier");
-//        request.setRequestResult(resultJTextField.getText());
-//        request.setStatus("Sent to Supplier");
         ArrayList<Products> productListSupp = new ArrayList<>();
         for (String str : requiredProdMap.keySet()) {
             Products p = new Products();
@@ -362,13 +358,13 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
             productListSupp.add(p);
 
         }
-      // request.setMessage("Process Required Food");
+
         request.setSender(userAccount);
         if(request.getReceiver()==userAccount)
         {
             request.setReceiver(null);
         }
-        request.setStatus("Pending Approval from Supplier");
+        request.setStatus("Sent to Supplier");
         request.setProductList(productList);
         request.setSuppProductList(productListSupp);
         
@@ -377,18 +373,15 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
                 if (entp instanceof SupplierEnterprise) {
                     for (Organization org : entp.getOrganizationDirectory().getOrganizationList()) {
                         if (org instanceof SupplierOrganization) {
+                           System.out.print(request + "requestttttt suplier" + org);
                            org.getWorkQueue().getWorkRequestList().add(request);
                            userAccount.getWorkQueue().getWorkRequestList().add(request);
-                            
-
                         }
                     }
                 }
             }
         }
       
-          
-        
         JOptionPane.showMessageDialog(null, "Request Sent to Supplier!");
         
       
@@ -414,7 +407,7 @@ public class ProcessDWorkAreaJPanel extends javax.swing.JPanel {
 
     private void populateInventory() {
 
-          inventoryList = InventoryDirectory.getInventoryList();
+        inventoryList = InventoryDirectory.getInventoryList();
         DefaultTableModel model1 = (DefaultTableModel) tblInventory.getModel();
         model1.setRowCount(0);
         for (Inventory p : inventoryList) {
