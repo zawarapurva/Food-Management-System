@@ -19,14 +19,14 @@ public class InventoryDirectory {
      
     private InventoryDirectory() {
         
-     	Inventory inv1  = new Inventory("101", "Bread","Bakery Products","Available",100);
+     	Inventory inv1  = new Inventory("101", "Bread","Bakery Products","Available",10);
         Inventory inv2  = new Inventory("102", "Muffin","Bakery Products","Available",100);
         Inventory inv3  = new Inventory("103", "Cakes","Bakery Products","Available",100);
-        Inventory inv4  = new Inventory("104", "Milk","Dairy Products","Available",100);
+        Inventory inv4  = new Inventory("104", "Milk","Dairy Products","Available",10);
         Inventory inv5  = new Inventory("105", "Eggs","Dairy Products","Available",100);
         Inventory inv6  = new Inventory("106", "Butter","Dairy Products","Available",100);
         Inventory inv7  = new Inventory("107", "Chicken","Meat Products","Available",100);
-        Inventory inv8  = new Inventory("108", "Turkey","Meat Products","Available",100);
+        Inventory inv8  = new Inventory("108", "Turkey","Meat Products","Available",10);
         Inventory inv9  = new Inventory("109", "Ham","Meat Products","Available",100);
         Inventory inv10 = new Inventory("110", "Wheat","Cereals","Available",100);
         Inventory inv11 = new Inventory("111", "Rice","Cereals","Available",100);

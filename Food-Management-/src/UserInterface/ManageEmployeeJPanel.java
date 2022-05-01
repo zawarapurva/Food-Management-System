@@ -91,6 +91,11 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel2.setText("Name");
 
         organizationEmpJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        organizationEmpJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizationEmpJComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -190,7 +195,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
         Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
-        
+
         //*************** Validation *******************
         
         String ename = nameJTextField.getText();
@@ -200,12 +205,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             return;
         }
         
-        
         String name = nameJTextField.getText();
 
         organization.getEmployeeDirectory().createEmployee(name);
         populateTable(organization);
-        
         
         JOptionPane.showMessageDialog(null, "New employee has been created!");
         nameJTextField.setText("");
@@ -225,6 +228,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void organizationEmpJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationEmpJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organizationEmpJComboBoxActionPerformed
+
     private void populateTable(Organization organization) {
       
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
@@ -240,7 +247,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     
     private void populateOrganizationComboBox() {
         organizationJComboBox.removeAllItems();
-        
+
         for (Organization organization : organizationDirectory.getOrganizationList()){
             organizationJComboBox.addItem(organization);
         }
@@ -248,7 +255,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     private void populateOrganizationEmpComboBox() {
     
-         organizationEmpJComboBox.removeAllItems();
+        organizationEmpJComboBox.removeAllItems();
         
         for (Organization organization : organizationDirectory.getOrganizationList()){
             organizationEmpJComboBox.addItem(organization);

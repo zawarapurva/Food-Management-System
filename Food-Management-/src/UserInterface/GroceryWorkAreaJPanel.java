@@ -5,15 +5,19 @@
 package UserInterface;
 
 import Business.EcoSystem;
-import Business.Enterprise.DistributorEnterprise;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.QualityCheckEnterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.GroceryOrganization;
-import Business.Organization.TransportOrganization;
+import Business.Organization.QualityOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FoodRequirementRequest;
+import Business.WorkQueue.Inventory;
+import Business.WorkQueue.InventoryDirectory;
 import Business.WorkQueue.WorkRequest;
+import Business.WorkQueue.Products;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -31,6 +35,7 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private Enterprise enterprise;
+    private FoodRequirementRequest request;
     private GroceryOrganization groceryOrganization;
     
     public GroceryWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, GroceryOrganization groceryOrganization, Enterprise enterprise, EcoSystem business) {
@@ -54,9 +59,12 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         refreshJButton = new javax.swing.JButton();
-        btnSentToTransport = new javax.swing.JButton();
+        btnSentToSupplier = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblProducts = new javax.swing.JTable();
+        showProductBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 51, 51));
         setToolTipText("");
@@ -74,12 +82,12 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSentToTransport.setBackground(new java.awt.Color(255, 255, 255));
-        btnSentToTransport.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
-        btnSentToTransport.setText("Send for Transport");
-        btnSentToTransport.addActionListener(new java.awt.event.ActionListener() {
+        btnSentToSupplier.setBackground(new java.awt.Color(255, 255, 255));
+        btnSentToSupplier.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
+        btnSentToSupplier.setText("Send to Supplier");
+        btnSentToSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSentToTransportActionPerformed(evt);
+                btnSentToSupplierActionPerformed(evt);
             }
         });
 
@@ -108,11 +116,47 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        tblProducts.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Food Type", "Product", "Quantity"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblProducts);
+
+        showProductBtn.setBackground(new java.awt.Color(255, 255, 255));
+        showProductBtn.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
+        showProductBtn.setText("Display Product");
+        showProductBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showProductBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1063, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(showProductBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSentToSupplier)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -121,16 +165,19 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(refreshJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(383, 383, 383)
-                            .addComponent(btnSentToTransport)
-                            .addGap(0, 488, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1))
                     .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 617, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(315, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSentToSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -138,10 +185,8 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addComponent(refreshJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(btnSentToTransport, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(340, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -150,48 +195,109 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Requests Updated!");
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
-    private void btnSentToTransportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSentToTransportActionPerformed
+    private void btnSentToSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSentToSupplierActionPerformed
 
         int selectedRow = workRequestJTable.getSelectedRow();
-
+        int count = 0, oldCount = 0, newCount = 0;
         if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a request!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        FoodRequirementRequest request = (FoodRequirementRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        
-        if(request.getStatus().equalsIgnoreCase("Completed")){
-            JOptionPane.showMessageDialog(null, "Request already Completed!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-               
-        if(request.getReceiver()==userAccount)
-        {
+        FoodRequirementRequest request = (FoodRequirementRequest) workRequestJTable.getValueAt(selectedRow, 0);
+
+        if (request.getReceiver() == userAccount) {
+
             request.setReceiver(null);
-        }
 
-        request.setMessage(request.getMessage());
-        request.setSender(userAccount);
-        request.setStatus("Sent to Transport");
-        
-        for (Network n : business.getNetworkList()) {
+            int reqCount = 0, suppCount = 0, changeCount = 0;
+            for (Inventory inSupp : InventoryDirectory.getInventoryList()) {
+                for (Products prod : request.getProductList()) {
 
-            for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+                    System.out.println(prod.getProductName() + "Prod Name");
+                    if (prod.getProductName().equalsIgnoreCase(inSupp.getProductName())) {
+                        if (prod.getQuantity() < inSupp.getQuantity()) {
+                            System.out.println("CHECK COUNT"+ prod.getProductName());
+                            suppCount = inSupp.getQuantity();
+                            reqCount = prod.getQuantity();
+                            changeCount = suppCount - reqCount;
+                            inSupp.setQuantity(changeCount);
+                            System.out.println("CHECK COUNT"+ changeCount);
+//                        suppCount=inSupp.getQuantity();
+//                        reqCount=prod.getQuantity();
+//                        suppCount=-reqCount;
+//                        inSupp.setQuantity(suppCount);
+                        }
+                        else
+                        {
+                            System.out.println("CHECK BIGEER "+ prod.getProductName()+"  "+ prod.getQuantity());
+                            inSupp.setQuantity(0);
+                            System.out.println("CHECK BIGEER "+ inSupp.getProductName()+"  "+ inSupp.getQuantity());
+                        }
+                    }
+                }
+            }
 
-                if (e instanceof DistributorEnterprise) {
+            request.setStatus("Sent to Quality");
+            if (request.getReceiver() == userAccount) {
+                this.request.setReceiver(null);
 
-                    for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
-                        if (organization instanceof TransportOrganization) { 
-                            organization.getWorkQueue().getWorkRequestList().add(request);
+            }
+
+            for (Network n : business.getNetworkList()) {
+
+                for (Enterprise e : n.getEnterpriseDirectory().getEnterpriseList()) {
+
+                    //   e.setEnterpriseType(Enterprise.EnterpriseType.QualityCheck);
+                    //if(e.getEnterpriseType().getValue().equals("Quality Check"))
+                    if (e instanceof QualityCheckEnterprise) {
+
+                        Organization org = null;
+                        for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
+                            if (organization instanceof QualityOrganization) { //changed from shlter to ngo organization
+                                org = organization;
+                                break;
+                            }
+                        }
+                        if (org != null) {
+
+                            org.getWorkQueue().getWorkRequestList().add(request);
                             userAccount.getWorkQueue().getWorkRequestList().add(request);
                         }
                     }
                 }
             }
+            JOptionPane.showMessageDialog(null, "Request Successfully Approved!!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Request Assign FIRST!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-        populateTable();
-        JOptionPane.showMessageDialog(null, "Request Successfully Sent for Transport !");
-    }//GEN-LAST:event_btnSentToTransportActionPerformed
+    }//GEN-LAST:event_btnSentToSupplierActionPerformed
+
+    private void showProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProductBtnActionPerformed
+
+        int selectedRow = workRequestJTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a request!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
+        model.setRowCount(0);
+        model.setRowCount(0);
+
+        WorkRequest Foodrequest = (WorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
+
+        ArrayList<Products> productList = ((FoodRequirementRequest) Foodrequest).getProductList();
+        if (productList != null) {
+            for (Products p : productList) {
+                Object row[] = new Object[3];
+                row[0] = p;
+                row[1] = p.getProductName();
+                row[2] = p.getQuantity();
+                model.addRow(row);
+
+            }
+        }
+    }//GEN-LAST:event_showProductBtnActionPerformed
 
     
     public void populateTable() {
@@ -214,10 +320,13 @@ public class GroceryWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSentToTransport;
+    private javax.swing.JButton btnSentToSupplier;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton refreshJButton;
+    private javax.swing.JButton showProductBtn;
+    private javax.swing.JTable tblProducts;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }
