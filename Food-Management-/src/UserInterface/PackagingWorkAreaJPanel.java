@@ -250,11 +250,8 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
                
-        if(request.getReceiver()==userAccount)
-        {
-            request.setReceiver(null);
-        }
 
+        request.setReceiver(null);
         request.setMessage(request.getMessage());
         request.setSender(userAccount);
         request.setStatus("Sent to Transport");
@@ -310,7 +307,7 @@ public class PackagingWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a request");
         }
 
-        DefaultTableModel model = (DefaultTableModel) tblProducts.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblProducts1.getModel();
         model.setRowCount(0);model.setRowCount(0);
 
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);

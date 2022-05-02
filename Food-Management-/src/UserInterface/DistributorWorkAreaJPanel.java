@@ -359,11 +359,14 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         } else if (quaRequest.getStatus().equalsIgnoreCase("Sent to Quality")) {
             JOptionPane.showMessageDialog(null, "Request already sent for Quality Check!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
-        } else if (!(quaRequest.getStatus().equalsIgnoreCase("Completed"))) {
-            JOptionPane.showMessageDialog(null, "Request yet to be approved by Distributor");
+        } else if (quaRequest.getStatus().equalsIgnoreCase("Completed")) {
+            JOptionPane.showMessageDialog(null, "Request is already Completed!");
             return;
         } else if (quaRequest.getStatus().equalsIgnoreCase("Sent to Packaging")) {
             JOptionPane.showMessageDialog(null, "Request already sent for Packaging!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else if (quaRequest.getStatus().equalsIgnoreCase("Quality Check Approved")) {
+            JOptionPane.showMessageDialog(null, "Request already Approved, send for Packaging!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         if(quaRequest.getReceiver()==userAccount)
@@ -413,11 +416,8 @@ public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
         } else if (quaRequest.getStatus().equalsIgnoreCase("Sent to Quality")) {
             JOptionPane.showMessageDialog(null, "Request sent for Quality Check!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
-        } else if (quaRequest.getStatus().equalsIgnoreCase("Quality Check Approved")) {
-            JOptionPane.showMessageDialog(null, "Quality Check approved, Send for Packaging", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        } else if (!(quaRequest.getStatus().equalsIgnoreCase("Completed"))) {
-            JOptionPane.showMessageDialog(null, "Request yet to be approved by Distributor", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else if (quaRequest.getStatus().equalsIgnoreCase("Completed")) {
+            JOptionPane.showMessageDialog(null, "Request is already Completed!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         } else if (quaRequest.getStatus().equalsIgnoreCase("Sent to Packaging")) {
             JOptionPane.showMessageDialog(null, "Request already sent for Packaging!", "Warning", JOptionPane.WARNING_MESSAGE);
