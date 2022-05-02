@@ -83,8 +83,12 @@ public class ProcessNWorkRequestJPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Processing Request");
 
+        radioRejected.setBackground(new java.awt.Color(0, 51, 51));
+        radioRejected.setForeground(new java.awt.Color(255, 255, 255));
         radioRejected.setText("Rejected");
 
+        radioApproved.setBackground(new java.awt.Color(0, 51, 51));
+        radioApproved.setForeground(new java.awt.Color(255, 255, 255));
         radioApproved.setText("Approved");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
