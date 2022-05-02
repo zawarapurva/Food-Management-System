@@ -59,7 +59,7 @@ public class MainJFrame extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         txtPasswordField = new javax.swing.JPasswordField();
         enterpriseLabel = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         userProcessContainer = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -67,7 +67,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        upperContainer.setBackground(new java.awt.Color(0, 0, 0));
+        upperContainer.setBackground(new java.awt.Color(0, 153, 153));
         upperContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         upperContainer.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 104, -1));
 
@@ -105,20 +105,20 @@ public class MainJFrame extends javax.swing.JFrame {
 
         enterpriseLabel.setFont(new java.awt.Font("Bodoni MT", 1, 36)); // NOI18N
         enterpriseLabel.setForeground(new java.awt.Color(255, 255, 255));
-        enterpriseLabel.setText("FOOD MANAGEMENT SYSTEM");
+        enterpriseLabel.setText("FOOD DONATION SYSTEM");
         upperContainer.add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 500, 60));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/Picture1.jpg"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        upperContainer.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 20, 160, -1));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/LOGO.png"))); // NOI18N
+        upperContainer.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, -30, 180, 180));
 
         jSplitPane.setTopComponent(upperContainer);
 
         userProcessContainer.setBackground(new java.awt.Color(51, 0, 0));
         userProcessContainer.setLayout(new java.awt.CardLayout());
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/Webp.net-resizeimage.jpg"))); // NOI18N
-        jLabel4.setText("jLabel4");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/shutterstock_1711992256.0.jpg"))); // NOI18N
+        jLabel4.setMaximumSize(new java.awt.Dimension(1400, 900));
         userProcessContainer.add(jLabel4, "card2");
 
         jSplitPane.setRightComponent(userProcessContainer);
@@ -291,8 +291,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JSplitPane jSplitPane;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JPasswordField txtPasswordField;
