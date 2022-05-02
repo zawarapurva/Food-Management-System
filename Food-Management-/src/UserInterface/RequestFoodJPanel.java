@@ -153,6 +153,8 @@ public class RequestFoodJPanel extends javax.swing.JPanel {
         jLabel5.setText("Product:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 94, -1, -1));
 
+        checkBakery.setBackground(new java.awt.Color(0, 51, 51));
+        checkBakery.setForeground(new java.awt.Color(255, 255, 255));
         checkBakery.setText("Bakery Products");
         checkBakery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +163,8 @@ public class RequestFoodJPanel extends javax.swing.JPanel {
         });
         add(checkBakery, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 126, -1, -1));
 
+        checkDairy.setBackground(new java.awt.Color(0, 51, 51));
+        checkDairy.setForeground(new java.awt.Color(255, 255, 255));
         checkDairy.setText("Dairy Products");
         checkDairy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +173,8 @@ public class RequestFoodJPanel extends javax.swing.JPanel {
         });
         add(checkDairy, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 157, -1, -1));
 
+        checkMeat.setBackground(new java.awt.Color(0, 51, 51));
+        checkMeat.setForeground(new java.awt.Color(255, 255, 255));
         checkMeat.setText("Meat Products");
         checkMeat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +183,8 @@ public class RequestFoodJPanel extends javax.swing.JPanel {
         });
         add(checkMeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 188, -1, -1));
 
+        checkCereals.setBackground(new java.awt.Color(0, 51, 51));
+        checkCereals.setForeground(new java.awt.Color(255, 255, 255));
         checkCereals.setText("Cereals");
         checkCereals.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +193,8 @@ public class RequestFoodJPanel extends javax.swing.JPanel {
         });
         add(checkCereals, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 219, -1, -1));
 
+        checkVegetables.setBackground(new java.awt.Color(0, 51, 51));
+        checkVegetables.setForeground(new java.awt.Color(255, 255, 255));
         checkVegetables.setText("Vegetables");
         checkVegetables.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +203,8 @@ public class RequestFoodJPanel extends javax.swing.JPanel {
         });
         add(checkVegetables, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
+        checkFruits.setBackground(new java.awt.Color(0, 51, 51));
+        checkFruits.setForeground(new java.awt.Color(255, 255, 255));
         checkFruits.setText("Fruits");
         checkFruits.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
