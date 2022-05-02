@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Pankaj Gorav
+ * @author apurvazawar
  */
 public class DistributorWorkAreaJPanel extends javax.swing.JPanel {
 

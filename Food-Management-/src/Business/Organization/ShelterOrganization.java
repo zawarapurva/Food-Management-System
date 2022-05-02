@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Team Void
+ * @author Pooja
  */
 public class ShelterOrganization extends Organization{
     

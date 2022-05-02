@@ -7,7 +7,7 @@ package Business.WorkQueue;
 import java.util.ArrayList;
 /**
  *
- * @author kasar
+ * @author apurvazawar
  */
 public class InventoryDirectory {
     

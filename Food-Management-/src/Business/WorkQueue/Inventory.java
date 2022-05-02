@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  *
- * @author kasar
+ * @author apurvazawar
  */
 public class Inventory {
      private String productID;

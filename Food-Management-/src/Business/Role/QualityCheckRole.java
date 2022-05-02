@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author kasar
+ * @author Sumedha
  */
 public class QualityCheckRole extends Role {
     

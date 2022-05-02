@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Pankaj Gorav
+ * @author apurvazawar
  */
 public class DistributorEnterprise extends Enterprise {
     

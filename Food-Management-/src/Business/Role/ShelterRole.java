@@ -12,7 +12,7 @@ import UserInterface.ShelterWorkAreaJPanel;
 import javax.swing.JPanel;
 /**
  *
- * @author kasar
+ * @author Sumedha
  */
 public class ShelterRole extends Role {
     

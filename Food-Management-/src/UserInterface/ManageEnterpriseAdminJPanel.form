@@ -41,12 +41,10 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="submitJButton" pref="150" max="32767" attributes="0"/>
-                              <Component id="passwordJPasswordField" max="32767" attributes="0"/>
-                              <Component id="usernameJTextField" max="32767" attributes="0"/>
-                              <Component id="nameJTextField" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="submitJButton" pref="150" max="32767" attributes="0"/>
+                          <Component id="passwordJPasswordField" max="32767" attributes="0"/>
+                          <Component id="usernameJTextField" max="32767" attributes="0"/>
+                          <Component id="nameJTextField" alignment="0" max="32767" attributes="0"/>
                           <Component id="enterpriseJComboBox" pref="188" max="32767" attributes="0"/>
                           <Component id="networkJComboBox" alignment="0" max="32767" attributes="0"/>
                       </Group>

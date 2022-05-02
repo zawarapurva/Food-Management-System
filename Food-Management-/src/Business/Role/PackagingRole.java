@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author kasar
+ * @author Sumedha
  */
 public class PackagingRole extends Role {
     @Override

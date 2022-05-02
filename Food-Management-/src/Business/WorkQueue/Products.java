@@ -6,7 +6,7 @@ package Business.WorkQueue;
 
 /**
  *
- * @author kasar
+ * @author apurvazawar
  */
 public class Products {
     private String productType;
