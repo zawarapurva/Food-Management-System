@@ -69,7 +69,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         upperContainer.setBackground(new java.awt.Color(0, 153, 153));
         upperContainer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        upperContainer.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 104, -1));
+        upperContainer.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 104, -1));
 
         txtPassword.setUI(null);
         upperContainer.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 37, 3, 0));
@@ -81,17 +81,17 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        upperContainer.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 104, 20));
+        upperContainer.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 104, 20));
 
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Username");
-        upperContainer.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
+        upperContainer.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password");
-        upperContainer.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+        upperContainer.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
 
         btnLogout.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
         btnLogout.setText("Logout");
@@ -100,25 +100,31 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnLogoutActionPerformed(evt);
             }
         });
-        upperContainer.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 120, 20));
-        upperContainer.add(txtPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 104, -1));
+        upperContainer.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 120, 20));
+        upperContainer.add(txtPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 104, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Bodoni MT", 1, 36)); // NOI18N
         enterpriseLabel.setForeground(new java.awt.Color(255, 255, 255));
         enterpriseLabel.setText("FOOD DONATION SYSTEM");
-        upperContainer.add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 500, 60));
+        upperContainer.add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 500, 60));
 
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/LOGO.png"))); // NOI18N
-        upperContainer.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, -30, 180, 180));
+        upperContainer.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, -10, 180, 180));
 
         jSplitPane.setTopComponent(upperContainer);
 
-        userProcessContainer.setBackground(new java.awt.Color(51, 0, 0));
+        userProcessContainer.setBackground(new java.awt.Color(0, 0, 0));
+        userProcessContainer.setMaximumSize(new java.awt.Dimension(1500, 1000));
+        userProcessContainer.setSize(new java.awt.Dimension(1500, 1000));
         userProcessContainer.setLayout(new java.awt.CardLayout());
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/shutterstock_1711992256.0.jpg"))); // NOI18N
-        jLabel4.setMaximumSize(new java.awt.Dimension(1400, 900));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/Images/background.jpeg"))); // NOI18N
+        jLabel4.setMaximumSize(new java.awt.Dimension(1500, 1000));
+        jLabel4.setMinimumSize(new java.awt.Dimension(1500, 1000));
+        jLabel4.setPreferredSize(new java.awt.Dimension(1500, 1000));
+        jLabel4.setSize(new java.awt.Dimension(1500, 1000));
         userProcessContainer.add(jLabel4, "card2");
 
         jSplitPane.setRightComponent(userProcessContainer);
